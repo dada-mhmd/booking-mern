@@ -13,6 +13,7 @@ import Layout from './layouts/Layout';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Spinner from './components/Spinner';
+import AddHotel from './pages/AddHotel';
 
 const App = () => {
   const { data: authUser, isLoading } = useQuery({
@@ -66,6 +67,19 @@ const App = () => {
                 <Layout>{!authUser ? <Login /> : <Navigate to='/' />}</Layout>
               }
             />
+
+            {authUser && (
+              <>
+                <Route
+                  path='/add-hotel'
+                  element={
+                    <Layout>
+                      <AddHotel />
+                    </Layout>
+                  }
+                />
+              </>
+            )}
 
             <Route path='*' element={<Navigate to='/' />} />
           </Routes>
